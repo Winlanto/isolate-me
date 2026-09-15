@@ -1,0 +1,32 @@
+/* 1. Box-sizing reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Element margin/padding reset */
+body, h1, h2, h3, h4, p, ul, ol, figure {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Body base */
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* 4. Media block reset */
+img, picture, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 5. Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
