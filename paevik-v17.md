@@ -602,3 +602,41 @@
 - **Ressursikulu (Resource Budget):**
   - **Claude ja GPT mudelid:** Nädalane limiit ammendatud (100% kasutatud).
   - **Gemini mudelid:** Alles jäi ligikaudu **54% nädalalimiidist**, mille toel viidi lõpule viimased koodiparandused ja stiilimuudatused.
+
+---
+
+## 24. Vigade paranduste ja dokumentatsiooni commit'imine ning koodi saatmine GitHubi
+
+- **Eesmärk ja skoop:** Tehtud koodimuudatuste (mängu lõppseis, stiilid), dokumentatsiooni (`README.md`, `paevik-v17.md`, kuvatõmmis) jaotamine kahte eraldi commit'i, repositooriumi oleku kontrollimine ning projekti üleslaadimine GitHubi kaugrepositooriumisse (`remote origin`).
+- **Vastuvõtutingimus:**
+  1. Esimene commit: lisada `src/components/Board.jsx`, `src/components/Game.jsx` ja `src/index.css` sõnumiga `"bugfixes"`.
+  2. Teine commit: lisada `docs/screenshot.png`, `README.md` ja `paevik-v17.md` sõnumiga `"Readme, Paevik"`.
+  3. Kontrollida puhta tööseisu olemasolu käskudega `git status --short` ja `git diff`.
+  4. Seadistada kaugrepositoorium: `git remote add origin https://github.com/Winlanto/isolate-me.git`.
+  5. Määrata peaharu (`git branch -M main`) ja lükata muudatused serverisse (`git push -u origin main`).
+- **Mudeli vestlus:** `Git` (Gemini Flash).
+
+### ReAct tsükkel ja viip (Prompt)
+
+- **Sisendviip:**
+
+  > **Task:** List unstaged files, make two commits:
+  >
+  > 1. Stage and commit Board.jsx, Game.jsx, and index.css with message `"bugfixes"`.
+  > 2. Stage and commit screenshot, README.md, and paevik with message `"Readme, Paevik"`.
+  > 3. Verify with `git status --short` and `git diff`.
+  > 4. Add remote origin `https://github.com/Winlanto/isolate-me.git`, set branch to `main`, and push.
+
+- **Tegevused, tõendid ja tulemus:**
+  1. _Esimene commit:_
+     - Käsk: `git add src/components/Board.jsx src/components/Game.jsx src/index.css; git commit -m "bugfixes"`
+     - Tulemus: `[main e8797cc] bugfixes` (3 files changed, 39 insertions(+), 20 deletions(-)).
+  2. _Teine commit:_
+     - Käsk: `git add docs/screenshot.png README.md paevik-v17.md; git commit -m "Readme, Paevik"`
+     - Tulemus: `[main 39c9aef] Readme, Paevik` (3 files changed, 684 insertions(+), 9 deletions(-)).
+  3. _Verifitseerimine:_
+     - `git status --short`: puhas (`clean working tree`).
+     - `git diff`: tühi.
+  4. _Kaugrepositooriumi sidumine ja push:_
+     - Käsud: `git remote add origin https://github.com/Winlanto/isolate-me.git`, `git branch -M main`, `git push -u origin main`.
+     - Tulemus: Haru `main` seostati edukalt GitHubi repositooriumiga ning kood laaditi üles (`branch 'main' set up to track 'origin/main'`).
