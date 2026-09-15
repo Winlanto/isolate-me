@@ -1,3 +1,10 @@
+import Header from './components/Header.jsx';
+
 export default function App() {
-  return <div>Isolation Game</div>;
+  return (
+    <>
+      <Header />
+      <div>Isolation Game</div>
+    </>
+  );
 }
