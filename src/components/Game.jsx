@@ -121,6 +121,8 @@ export default function Game() {
           validMoves={validMoves}
           onCellClick={handleCellClick}
           isBotTurn={state.isBotTurn}
+          phase={state.phase}
+          winner={state.winner}
         />
       )}
     </div>
