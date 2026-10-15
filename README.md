@@ -9,9 +9,6 @@ A web-based implementation of the mathematical strategy board game **Isolation**
 ## Preview
 
 ![Isolation Game Screenshot](./docs/screenshot.png)
-## Preview
-
-![Isolation Game Screenshot](./docs/screenshot.png)
 
 ---
 
@@ -23,6 +20,7 @@ The game is played on a **3x3 grid** with a single shared token:
 2. **Turns:** Players take turns moving the token one step orthogonally (**up, down, left, right**).
 3. **Burning Tiles:** Every tile vacated by the token becomes permanently blocked.
 4. **Endgame:** The first player with no legal moves left on their turn loses.
+
 ## Rules
 
 The game is played on a **3x3 grid** with a single shared token:
@@ -49,6 +47,7 @@ The game is played on a **3x3 grid** with a single shared token:
 - **Styling:** CSS (Grid, Flexbox)
 - **Core Logic:** JavaScript (ES6 Modules)
 - **Tooling:** Oxlint, Git
+
 ## Features & Implementation
 
 - **Minimax Decision Engine:** Explores game states to calculate optimal moves for the computer opponent.
@@ -104,13 +103,13 @@ isolate-me/
    cd isolate-me
 
 2. Install dependencies:
-2. Install dependencies:
+3. Install dependencies:
    npm install
 
-3. Start dev server:
-3. Start dev server:
+4. Start dev server:
+5. Start dev server:
    npm run dev
 
-4. Build production bundle:
-4. Build production bundle:
+6. Build production bundle:
+7. Build production bundle:
    npm run build
