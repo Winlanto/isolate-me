@@ -41,7 +41,7 @@ Measurements evaluated across all unique board symmetries (corners, edges, cente
 | **Explored States (Nodes)**  | 61 – 79         | 40 – 59              | **Up to 44.3% tree reduction** |
 | **Execution Time (Node.js)** | ~0.23 – 0.24 ms | ~0.11 – 0.15 ms      | **Up to ~45% speedup**         |
 
-- The search space adheres to `O(b^d)` worst-case complexity (`b <= 4`, `d <= 9`), scaling down toward `O(b^(d/2))` under optimal Alpha-Beta branch pruning. This guarantees mathematically optimal moves in under 0.2 ms on Node.js runtimes.
+- The search space adheres to $\mathcal{O}(b^d)$ worst-case complexity ($b \le 4, d \le 9$), scaling down toward $\mathcal{O}(b^{d/2})$ under optimal Alpha-Beta branch pruning, guaranteeing mathematically optimal moves in under $0.2\text{ ms}$ on Node.js runtimes.
 
 ---
 
