@@ -44,7 +44,7 @@ export function getAvailableMoves(position, burnedPositions) {
  * Minimax — terminal: isBotTurn ? 0 : 1
  * Bot maximizes, Human minimizes.
  */
-export function minimax(position, burnedPositions, isBotTurn, depth = 0) {
+export function minimax(position, burnedPositions, isBotTurn, depth = 0, alpha = -Infinity, beta = Infinity) {
   const availableMoves = getAvailableMoves(position, burnedPositions);
   if (availableMoves.length === 0) {
     const maxScore = boardSize + 1;
