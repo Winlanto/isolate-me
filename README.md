@@ -1,101 +1,83 @@
-# Isolation Game (Web & AI)
+# Isolation Game
 
-Minimalistlik kahe mängija strateegiamäng **Isolation**, kus inimene mängib Minimax-algoritmil põhineva tehisintellekti (boti) vastu. Projekt on arendatud Reacti ja Vite baasil tehisintellekti agentide abil.
-
----
-
-## 📸 Ekraanipilt
-
-<!-- Aseta ekraanipilt projekti kausta: docs/screenshot.png -->
-![Isolation Game ekraanipilt](./docs/screenshot.png)
+A web-based implementation of the mathematical strategy board game **Isolation**, built with React and Vite. Features a custom game engine powered by the Minimax algorithm with Alpha-Beta pruning.
 
 ---
 
-## 🎮 Mängureeglid
+## Preview
 
-Mäng põhineb aine tehisintellekti 1. koduülesande (`kodu1.js`) loogikal:
-
-1. Mängulaud on **3x3** ruudustik.
-2. Mängus on **üks ühine nupp**, mis alustab ruudustiku positsioonilt **2** (indeks 1).
-3. Algusruut söestub koheselt mängu käivitumisel.
-4. Mängija ja bot teevad käike kordamööda, liigutades ühist nuppu ühe sammu võrra neljas suunas (**üles, alla, vasakule, paremale**).
-5. Iga ruut, kuhu astutakse, söestub ja muutub jäädavalt läbipääsmatuks.
-6. Mängija, kelle käigukorral pole enam ühtegi vaba naaberruutu, **kaotab mängu**.
+![Isolation Game Screenshot](./docs/screenshot.png)
 
 ---
 
-## 🛠 Tehnoloogiapino
+## Rules
 
-- **Käivitus ja kooste:** Vite
-- **Kasutajaliides:** React (Vanilla JS / JSX, ilma väliste UI teekideta)
-- **Kujundus:** Puhas CSS (CSS Grid, CSS Flexbox, modernne reset, Tiffany Blue bränding)
-- **AI mootor:** Minimax algoritm puhtas JavaScript moodulis (`src/utils/minimax.js`)
-- **Versioonihaldus:** Git (Conventional Commits)
+The game is played on a **3x3 grid** with a single shared token:
+
+1. **Start:** The token starts at position **1** (top-center). The starting tile is burned immediately.
+2. **Turns:** Players take turns moving the token one step orthogonally (**up, down, left, right**).
+3. **Burning Tiles:** Every tile vacated by the token becomes permanently blocked.
+4. **Endgame:** The first player with no legal moves left on their turn loses.
 
 ---
 
-## 📁 Projekti struktuur
+## Features & Implementation
 
-Tehis2/
-├── index.html              # HTML pealeht
-├── GEMINI.md               # Agendi arendusreeglid ja juhised
-├── package.json            # Projekti skriptid ja sõltuvused
+- **Minimax Decision Engine:** Explores game states to calculate optimal moves for the computer opponent.
+- **Alpha-Beta Pruning:** Cuts off redundant branches in the search tree to minimize compute time.
+- **Depth-Weighted Scoring:** Prioritizes faster victories and delays loss scenarios based on distance to terminal state.
+- **Separation of Concerns:** Core game and search logic (`src/utils/minimax.js`) is decoupled from React UI components.
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, Vite
+- **Styling:** CSS (Grid, Flexbox)
+- **Core Logic:** JavaScript (ES6 Modules)
+- **Tooling:** Oxlint, Git
+
+---
+
+## Project Structure
+
+isolate-me/
+├── index.html
+├── package.json
 ├── docs/
-│   └── screenshot.png      # Mängu ekraanipilt (paiguta fail siia kausta)
+│ └── screenshot.png
 └── src/
-    ├── main.jsx            # Reacti sisenemispunkt
-    ├── App.jsx             # Rakenduse peakoostaja
-    ├── index.css           # Lähtestus, CSS Grid ja kujundusstiilid
-    ├── components/
-    │   ├── Header.jsx      # Kleepuv päis Tiffany Blue stiilis
-    │   ├── Rules.jsx       # Reeglite rippmenüü
-    │   ├── Board.jsx       # 3x3 mänguväli ja ruutude olekud
-    │   └── Game.jsx        # Mängu olekumasin ja käikude juhtimine
-    └── utils/
-        └── minimax.js      # Puhas Minimax otsustusloogika ja tehisintellekt
+├── main.jsx
+├── App.jsx
+├── index.css
+├── components/
+│ ├── Header.jsx
+│ ├── Rules.jsx
+│ ├── Board.jsx
+│ └── Game.jsx
+└── utils/
+└── minimax.js
 
 ---
 
-## 🐛 Teadaolevad vead ja agendi omapärad (Known Quirks / Bugs)
+## Getting Started
 
-- **Võitja tähistus (AI iseseisev lahendus):** Mängu lõppseisus otsustas tehisintellekti agent algselt kavandatud lihtsa nupumärgenduse asemel lisada võidutrofee ikooni (`🏆 P` või `🏆 B`). Lahendus osutus visuaalselt selgeks ja jäeti rakendusse püsima.
-- **Reeglite rippmenüü noole suund:** Komponendis `Rules.jsx` esineb väike visuaalne vastuolu — menüü avamisel/sulgemisel ei kattu teksti indikaatori noole suund (▲ / ▼) alati loogilise avatud/suletud olekuga (vajab nupu sildi ümberpööramist).
+### Prerequisites
 
----
-
-## 🔮 Edasised arendussammud (Roadmap)
-
-1. **Kasutajaliidese pisivigade parandamine:**
-   - Komponendi `Rules.jsx` rippmenüü noole loogika viimine vastavusse tegeliku olekuga.
-   - Mängu taaskäivituse (`Reset / New Game`) visuaalse sujuvuse lihvimine.
-2. **Täielik mobiilne kohandatavus (Responsive Design):**
-   - Meediapäringute (`@media`) lisamine ruudustiku (`.board`) ja rippmenüü skaleerimiseks väiksematel ekraanidel.
-   - Puutetundlike ekraanide nuppude ja klikitavate alade optimeerimine mobiilseadmetele.
-3. **Dokumentatsiooni täiendamine:**
-   - Mobiilivaate kuvatõmmiste lisamine kausta `docs/`.
-   - Vigade nimekirja ajakohastamine pärast paranduste avalikustamist.
-
----
-
-## 🚀 Käivitamine lokaalselt
-
-### Eeltingimused
-
-- Node.js (versioon 18 või uuem)
+- Node.js (v18+)
 - npm
 
-### Paigaldus ja käivitus
+### Installation & Run
 
-1. Klooni repositoorium ja liigu kausta:
-   git clone [https://github.com/Winlanto/isolate-me.git](https://github.com/Winlanto/isolate-me.git)
-   cd Tehis2
+1. Clone repository:
+   git clone https://github.com/Winlanto/isolate-me.git
+   cd isolate-me
 
-2. Paigalda sõltuvused:
+2. Install dependencies:
    npm install
 
-3. Käivita arendusserver:
+3. Start dev server:
    npm run dev
-   Ava brauseris kuvatud aadress (tavaliselt http://localhost:5173).
 
-4. Koosta tootmisversioon (Build):
+4. Build production bundle:
    npm run build
