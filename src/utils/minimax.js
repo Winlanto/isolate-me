@@ -41,31 +41,60 @@ export function getAvailableMoves(position, burnedPositions) {
 }
 
 /**
- * Minimax — terminal: isBotTurn ? 0 : 1
+ * Minimax
  * Bot maximizes, Human minimizes.
  */
-export function minimax(position, burnedPositions, isBotTurn, depth = 0, alpha = -Infinity, beta = Infinity) {
+export function minimax(
+  position,
+  burnedPositions,
+  isBotTurn,
+  depth = 0,
+  alpha = -Infinity,
+  beta = Infinity,
+) {
   const availableMoves = getAvailableMoves(position, burnedPositions);
   if (availableMoves.length === 0) {
     const maxScore = boardSize + 1;
     return isBotTurn ? -maxScore + depth : -depth + maxScore;
   }
 
-  const scores = [];
+  // const scores = [];
   if (isBotTurn) {
+    let maxScore = -Infinity;
     for (const m of availableMoves) {
       const nextBurned = new Set(burnedPositions);
       nextBurned.add(m.position);
-      scores.push(minimax(m.position, nextBurned, false, depth + 1));
+      const score = minimax(
+        m.position,
+        nextBurned,
+        false,
+        depth + 1,
+        alpha,
+        beta,
+      );
+      maxScore = Math.max(maxScore, score);
+      alpha = Math.max(alpha, score);
+      if (beta <= alpha) break;
     }
-    return Math.max(...scores);
+    return maxScore;
   } else {
+    let minScore = Infinity;
     for (const m of availableMoves) {
       const nextBurned = new Set(burnedPositions);
       nextBurned.add(m.position);
-      scores.push(minimax(m.position, nextBurned, true, depth + 1));
+      const score = minimax(
+        m.position,
+        nextBurned,
+        true,
+        depth + 1,
+        alpha,
+        beta,
+      );
+      minScore = Math.min(minScore, score);
+      beta = Math.min(beta, score);
+      if (beta <= alpha) break;
     }
-    return Math.min(...scores);
+    return minScore;
   }
 }
 
@@ -78,14 +107,18 @@ export function botBestMove(position, burnedPositions) {
 
   let bestMove = null;
   let bestScore = -Infinity;
+  let alpha = -Infinity;
+  const beta = Infinity;
+
   for (const m of availableMoves) {
     const nextBurned = new Set(burnedPositions);
     nextBurned.add(m.position);
-    const score = minimax(m.position, nextBurned, false, 1);
+    const score = minimax(m.position, nextBurned, false, 1, alpha, beta);
     if (score > bestScore) {
       bestScore = score;
       bestMove = m;
     }
+    alpha = Math.max(alpha, bestScore);
   }
   return bestMove;
 }
