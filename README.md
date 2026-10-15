@@ -9,6 +9,9 @@ A web-based implementation of the mathematical strategy board game **Isolation**
 ## Preview
 
 ![Isolation Game Screenshot](./docs/screenshot.png)
+## Preview
+
+![Isolation Game Screenshot](./docs/screenshot.png)
 
 ---
 
@@ -20,9 +23,32 @@ The game is played on a **3x3 grid** with a single shared token:
 2. **Turns:** Players take turns moving the token one step orthogonally (**up, down, left, right**).
 3. **Burning Tiles:** Every tile vacated by the token becomes permanently blocked.
 4. **Endgame:** The first player with no legal moves left on their turn loses.
+## Rules
+
+The game is played on a **3x3 grid** with a single shared token:
+
+1. **Start:** The token starts at position **1** (top-center). The starting tile is burned immediately.
+2. **Turns:** Players take turns moving the token one step orthogonally (**up, down, left, right**).
+3. **Burning Tiles:** Every tile vacated by the token becomes permanently blocked.
+4. **Endgame:** The first player with no legal moves left on their turn loses.
 
 ---
 
+## Features & Implementation
+
+- **Minimax Decision Engine:** Explores game states to calculate optimal moves for the computer opponent.
+- **Alpha-Beta Pruning:** Cuts off redundant branches in the search tree to minimize compute time.
+- **Depth-Weighted Scoring:** Prioritizes faster victories and delays loss scenarios based on distance to terminal state.
+- **Separation of Concerns:** Core game and search logic (`src/utils/minimax.js`) is decoupled from React UI components.
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, Vite
+- **Styling:** CSS (Grid, Flexbox)
+- **Core Logic:** JavaScript (ES6 Modules)
+- **Tooling:** Oxlint, Git
 ## Features & Implementation
 
 - **Minimax Decision Engine:** Explores game states to calculate optimal moves for the computer opponent.
@@ -78,10 +104,13 @@ isolate-me/
    cd isolate-me
 
 2. Install dependencies:
+2. Install dependencies:
    npm install
 
 3. Start dev server:
+3. Start dev server:
    npm run dev
 
+4. Build production bundle:
 4. Build production bundle:
    npm run build
