@@ -1,5 +1,7 @@
 # Isolation Game
 
+🎮 **Live Demo:** [isolate-me.vercel.app](https://isolate-me.vercel.app/)
+
 A web-based implementation of the mathematical strategy board game **Isolation**, built with React and Vite. Features a custom game engine powered by the Minimax algorithm with Alpha-Beta pruning.
 
 ---
@@ -41,22 +43,24 @@ The game is played on a **3x3 grid** with a single shared token:
 
 ## Project Structure
 
+```text
 isolate-me/
 ├── index.html
 ├── package.json
 ├── docs/
-│ └── screenshot.png
+│   └── screenshot.png
 └── src/
-├── main.jsx
-├── App.jsx
-├── index.css
-├── components/
-│ ├── Header.jsx
-│ ├── Rules.jsx
-│ ├── Board.jsx
-│ └── Game.jsx
-└── utils/
-└── minimax.js
+    ├── main.jsx
+    ├── App.jsx
+    ├── index.css
+    ├── components/
+    │   ├── Header.jsx
+    │   ├── Rules.jsx
+    │   ├── Board.jsx
+    │   └── Game.jsx
+    └── utils/
+        └── minimax.js
+```
 
 ---
 
