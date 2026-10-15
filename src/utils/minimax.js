@@ -4,23 +4,23 @@
  */
 
 export const boardLength = 3;
-export const boardSize   = boardLength * boardLength;
+export const boardSize = boardLength * boardLength;
 
 /**
  * Returns next position in given direction, or null if move is off-grid.
  */
 export function move(position, direction) {
   let nextPosition = position;
-  if (direction === 'right') {
+  if (direction === "right") {
     if (position % boardLength < boardLength - 1) nextPosition++;
   }
-  if (direction === 'left') {
+  if (direction === "left") {
     if (position % boardLength > 0) nextPosition--;
   }
-  if (direction === 'up') {
+  if (direction === "up") {
     if (position >= boardLength) nextPosition -= boardLength;
   }
-  if (direction === 'down') {
+  if (direction === "down") {
     if (position < boardSize - boardLength) nextPosition += boardLength;
   }
   return nextPosition !== position ? nextPosition : null;
@@ -31,7 +31,7 @@ export function move(position, direction) {
  */
 export function getAvailableMoves(position, burnedPositions) {
   const availableMoves = [];
-  ['left', 'right', 'up', 'down'].forEach((direction) => {
+  ["left", "right", "up", "down"].forEach((direction) => {
     const nextPosition = move(position, direction);
     if (nextPosition !== null && !burnedPositions.has(nextPosition)) {
       availableMoves.push({ direction, position: nextPosition });
@@ -44,10 +44,11 @@ export function getAvailableMoves(position, burnedPositions) {
  * Minimax — terminal: isBotTurn ? 0 : 1
  * Bot maximizes, Human minimizes.
  */
-export function minimax(position, burnedPositions, isBotTurn) {
+export function minimax(position, burnedPositions, isBotTurn, depth = 0) {
   const availableMoves = getAvailableMoves(position, burnedPositions);
   if (availableMoves.length === 0) {
-    return isBotTurn ? 0 : 1;
+    const maxScore = boardSize + 1;
+    return isBotTurn ? -maxScore + depth : -depth + maxScore;
   }
 
   const scores = [];
@@ -55,14 +56,14 @@ export function minimax(position, burnedPositions, isBotTurn) {
     for (const m of availableMoves) {
       const nextBurned = new Set(burnedPositions);
       nextBurned.add(m.position);
-      scores.push(minimax(m.position, nextBurned, false));
+      scores.push(minimax(m.position, nextBurned, false, depth + 1));
     }
     return Math.max(...scores);
   } else {
     for (const m of availableMoves) {
       const nextBurned = new Set(burnedPositions);
       nextBurned.add(m.position);
-      scores.push(minimax(m.position, nextBurned, true));
+      scores.push(minimax(m.position, nextBurned, true, depth + 1));
     }
     return Math.min(...scores);
   }
@@ -75,15 +76,15 @@ export function botBestMove(position, burnedPositions) {
   const availableMoves = getAvailableMoves(position, burnedPositions);
   if (availableMoves.length === 0) return null;
 
-  let bestMove  = null;
-  let bestScore = -1;
+  let bestMove = null;
+  let bestScore = -Infinity;
   for (const m of availableMoves) {
     const nextBurned = new Set(burnedPositions);
     nextBurned.add(m.position);
-    const score = minimax(m.position, nextBurned, false);
+    const score = minimax(m.position, nextBurned, false, 1);
     if (score > bestScore) {
       bestScore = score;
-      bestMove  = m;
+      bestMove = m;
     }
   }
   return bestMove;
