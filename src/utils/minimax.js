@@ -41,7 +41,7 @@ export function getAvailableMoves(position, burnedPositions) {
 }
 
 /**
- * Minimax
+ * Minimax with Alpha-Beta Pruning and depth weighting.
  * Bot maximizes, Human minimizes.
  */
 export function minimax(
@@ -58,7 +58,6 @@ export function minimax(
     return isBotTurn ? -maxScore + depth : -depth + maxScore;
   }
 
-  // const scores = [];
   if (isBotTurn) {
     let maxScore = -Infinity;
     for (const m of availableMoves) {
@@ -108,7 +107,7 @@ export function botBestMove(position, burnedPositions) {
   let bestMove = null;
   let bestScore = -Infinity;
   let alpha = -Infinity;
-  const beta = Infinity;
+  let beta = Infinity;
 
   for (const m of availableMoves) {
     const nextBurned = new Set(burnedPositions);
