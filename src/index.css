@@ -9,11 +9,17 @@ body, h1, h2, h3, h4, p, ul, ol, figure {
   padding: 0;
 }
 
-/* 3. Body base */
+/* 3. Body & root base */
+
+body, #root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: Inter, system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
   line-height: 1.5;
 }
 
@@ -251,4 +257,45 @@ img, picture, svg {
 
 .rules-body li {
   margin-bottom: 2px;
+}
+
+/* 10. Foooter */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 0;
+  font-size: 13px;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+}
+
+.footer-copyright {
+  color: #6b7280;
+  font-weight: 500;
+  user-select: none;
+}
+
+.footer a {
+  color: #0abab5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.15s ease;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .footer .container {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

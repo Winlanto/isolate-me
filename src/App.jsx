@@ -1,5 +1,6 @@
-import Header from './components/Header.jsx';
-import Game   from './components/Game.jsx';
+import Header from "./components/Header.jsx";
+import Game from "./components/Game.jsx";
+import Footer from "./components/Footer.jsx";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <main className="container">
         <Game />
       </main>
+      <Footer />
     </>
   );
 }
