@@ -101,3 +101,10 @@ isolate-me/
 
 5. Run benchmark suite:
    npm run benchmark
+
+---
+
+## Author & License
+
+- **Author:** [Alek-Jaan Tšern](https://github.com/Winlanto)
+- **License:** This project is licensed under the MIT License.
